@@ -73,7 +73,7 @@ require_once 'includes/header.php';
                         $amount = 0;
                         switch ($invoice['business_type_id']) {
                             case 1: // Freelancing
-                                $stmt2 = $pdo->prepare("SELECT SUM((pages * price_per_page) + (classes * price_per_class) + (research_hours * price_per_hour)) as total 
+                                $stmt2 = $pdo->prepare("SELECT SUM((pages * price_per_page) + (classes * price_per_class) + (research_hours * price_per_hour)) + (slides * price_per_slide) as total 
                                                        FROM freelancing_items WHERE invoice_id = ?");
                                 $stmt2->execute([$invoice['invoice_id']]);
                                 $total = $stmt2->fetch(PDO::FETCH_ASSOC);

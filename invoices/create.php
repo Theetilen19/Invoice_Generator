@@ -32,20 +32,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         case 1: // Freelancing
             foreach ($_POST['items'] as $item) {
                 $stmt = $pdo->prepare("INSERT INTO freelancing_items 
-                                     (invoice_id, item_type, pages, price_per_page, classes, price_per_class, research_hours, price_per_hour, description) 
-                                     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                                     (invoice_id, item_type, pages, price_per_page, classes, price_per_class, research_hours, price_per_hour, slides, price_per_slide, description) 
+                                     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                //Adding Float to pages
+                $pages = isset($item['pages']) ? (float)$item['pages'] : 0.0;
+
+                if($pages < 0){
+                    $pages = 0.0; //Avoiding neagtive pages
+                }
+
+                //Executing the statement with all required fields
                 $stmt->execute([
                     $invoiceId,
-                    $item['item_type'],
-                    $item['pages'] ?? 0,
-                    $item['price_per_page'] ?? 0,
-                    $item['classes'] ?? 0,
-                    $item['price_per_class'] ?? 0,
-                    $item['research_hours'] ?? 0,
-                    $item['price_per_hour'] ?? 0,
-                    $item['description']
-                ]);
-            }
+            $item['item_type'],
+            $pages,  // Now accepts decimal values
+            isset($item['price_per_page']) ? (float)$item['price_per_page'] : 0.0,
+            isset($item['classes']) ? (int)$item['classes'] : 0,  // Keep as integer if appropriate
+            isset($item['price_per_class']) ? (float)$item['price_per_class'] : 0.0,
+            isset($item['research_hours']) ? (float)$item['research_hours'] : 0.0,
+            isset($item['price_per_hour']) ? (float)$item['price_per_hour'] : 0.0,
+            isset($item['slides']) ? (int)$item['slides'] : 0,  // Keep as integer if appropriate
+            isset($item['price_per_slide']) ? (float)$item['price_per_slide'] : 0.0,
+            $item['description']
+        ]);
+    }
             break;
             
         case 2: // Computer Sales
@@ -170,6 +180,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <option value="article">Article</option>
                         <option value="class">Class</option>
                         <option value="research">Research</option>
+                        <option value="powerpoint">Powerpoint</option>
                     </select>
                 </div>
                 <div class="col-md-7">
@@ -187,7 +198,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="row mt-2 article-fields">
                 <div class="col-md-6">
                     <label class="form-label">Number of Pages</label>
-                    <input type="number" class="form-control" name="items[{{index}}][pages]" min="0" value="0">
+                    <input type="number" class="form-control" name="items[{{index}}][pages]" min="0" step="0.01" value="0">
                 </div>
                 <div class="col-md-6">
                     <label class="form-label">Price per Page (Ksh)</label>
@@ -214,6 +225,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="col-md-6">
                     <label class="form-label">Price per Hour (Ksh)</label>
                     <input type="number" class="form-control" name="items[{{index}}][price_per_hour]" min="0" step="0.01" value="0">
+                </div>
+            </div>
+
+            <div class="row mt-2 powerpoint-fields d-none">
+                <div class="col-md-6">
+                    <label class="form-label">Number of Slides</label>
+                    <input type="number" class="form-control" name="items[{{index}}][slides]" min="0" step="0.01" value="0">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Price per slide (Ksh)</label>
+                    <input type="number" class="form-control" name="items[{{index}}][price_per_slide]" min="0" step="0.01" value="0">
                 </div>
             </div>
         </div>

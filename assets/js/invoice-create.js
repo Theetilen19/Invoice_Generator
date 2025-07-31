@@ -62,11 +62,13 @@ document.addEventListener('DOMContentLoaded', function() {
         const articleFields = container.querySelector('.article-fields');
         const classFields = container.querySelector('.class-fields');
         const researchFields = container.querySelector('.research-fields');
+        const powerpointFields = container.querySelector('.powerpoint-fields');
         
         // Hide all fields first
         articleFields.classList.add('d-none');
         classFields.classList.add('d-none');
         researchFields.classList.add('d-none');
+        powerpointFields.classList.add('d-none');
         
         // Show relevant fields
         switch (itemType) {
@@ -79,6 +81,8 @@ document.addEventListener('DOMContentLoaded', function() {
             case 'research':
                 researchFields.classList.remove('d-none');
                 break;
+            case 'powerpoint':
+                powerpointFields.classList.remove('d-none');
         }
     }
     

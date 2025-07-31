@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo COMPANY_NAME; ?> - Invoice System</title>
-    <link rel="icon" href="<?php echo BASE_URL; ?>assets/images/LOGO-TEE.png" type="image/x-icon">
+    <link rel="icon" href="<?php echo BASE_URL; ?>assets/images/N-LOGO.png" type="image/x-icon">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
@@ -16,7 +16,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
             <a class="navbar-brand" href="<?php echo BASE_URL; ?>">
-                <img src="<?php echo BASE_URL; ?>assets/images/Logo.png" alt="Master Tee Logo" height="40" class="me-2">
+                <img src="<?php echo BASE_URL; ?>assets/images/N-LOGO.png" alt="Master Tee Logo" height="40" class="me-2">
                 <?php echo COMPANY_NAME; ?>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">

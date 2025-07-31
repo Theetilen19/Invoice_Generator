@@ -10,7 +10,7 @@ session_start();
 date_default_timezone_set('Africa/Nairobi');
 
 //contants
-define('BASE_URL', 'http://localhost:8000/'); // Project URL
+define('BASE_URL', 'http://localhost/Invoice Generator/'); // Project URL
 define('COMPANY_NAME', 'Maser Tee'); 
 define('COMPANY_SLOGAN', 'Your Trusted Partner in multi services');
 
