@@ -259,7 +259,7 @@ $businessTypes = $pdo->query("SELECT * FROM business_types")->fetchAll(PDO::FETC
                                     
                                     <div class="col-md-3 mb-3 article-fields" style="<?php echo ($item['item_type'] != 'article') ? 'display:none;' : ''; ?>">
                                         <label class="form-label">Pages</label>
-                                        <input type="number" class="form-control" name="items[<?php echo $index; ?>][pages]" value="<?php echo htmlspecialchars($item['pages']); ?>">
+                                        <input type="number" step="0.01" class="form-control" name="items[<?php echo $index; ?>][pages]" value="<?php echo htmlspecialchars($item['pages']); ?>">
                                     </div>
                                     <div class="col-md-3 mb-3 article-fields" style="<?php echo ($item['item_type'] != 'article') ? 'display:none;' : ''; ?>">
                                         <label class="form-label">Price per Page</label>
@@ -361,7 +361,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <!-- Article Fields -->
                     <div class="col-md-3 mb-3 article-fields">
                         <label class="form-label">Pages</label>
-                        <input type="number" class="form-control" name="items[${newIndex}][pages]" value="0">
+                        <input type="number" step="0.01" class="form-control" name="items[${newIndex}][pages]" value="0">
                     </div>
                     <div class="col-md-3 mb-3 article-fields">
                         <label class="form-label">Price per Page</label>
